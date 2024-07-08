@@ -15,7 +15,47 @@
 <link rel="icon" href="./images/galphi_fabi.jpg" type="image/x-icon">
 <style>@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap')</style>
 <style>@import url('https://fonts.googleapis.com/css2?family=Gowun+Batang&family=Gowun+Dodum&display=swap')</style>
-<link rel="stylesheet" href="./css/view.css">
+<style type="text/css">
+.button {
+	background-color: #6D4C3D;
+	border: none;
+	color: white;
+	padding: 2px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 12px;
+	margin: 4px 2px;
+	transition-duration: 0.4s;
+	cursor: pointer;
+	width: 55px;
+	height: 30px;
+}
+
+.button1 {
+	background-color: white;
+	color: black;
+	border: 1px solid #6D4C3D;
+}
+
+.button1:hover {
+	background-color: #6D4C3D;
+	color: white;	
+}
+
+.button2 {
+	background-color: #6D4C3D;
+	color: white;
+	border: none;
+	cursor: default;
+}
+
+.footer{
+   width: 100%;
+   height: 50px;
+}
+</style>
+
 </head>
 <body>
 	<div class="container-fluid"
@@ -66,8 +106,8 @@
 					    else
 					    {
 					        String nickname = (String) session.getAttribute("nickname");
-					        out.println(nickname+"님 로그인 되었습니다");
-					        out.print("<input type=\"button\" id=\"logout_btn\" class=\"btn btn-sm text-black-50 pt-4\" value=\"로그아웃\" onclick=\"location.href='logout.jsp'\">\n");
+					        out.print("<button type=\"button\" class=\"pt-4 btn btn-sm text-black-50\">"+nickname+"님 로그인 되었습니다" + "</button>");
+					        out.println("<input type=\"button\" id=\"logout_btn\" class=\"btn btn-sm text-black-50 pt-4\" value=\"로그아웃\" onclick=\"location.href='logout.jsp'\">\n");
 					    }
 					%>
 				<!-- 로그인/회원가입 폼 끝-->
@@ -117,22 +157,21 @@
 						<c:forEach var="vo" items="${list}">
 							<%-- ${vo} --%>
 							<fmt:formatDate var="pDate" value="${vo.pDate}" pattern="yy.MM.dd" />
-							<table class="table-borderless ms-sm-5" style="margin: 10px;">
+							<table class="table-borderless" style="margin-left: 6%;">
 								<tr>
-									<td rowspan="3" style="width: 150px; height: 200px;">
-									<img alt="title" src="./images/${vo.ISBN}.jpg" style="width: 200px; height: 267px;"></td>
+									<td rowspan="3" style="width: 100px; height: 150px;">
+										<img alt="title" src="./images/${vo.ISBN}.jpg" style="width: 200px; height: 267px;"></td>
 									<td style="text-align: left;">
 										<h4>
 											<a
 												href="selectByISBN.jsp?ISBN=${vo.ISBN}&currentPage=${currentPage}"
 												style="color: black; text-decoration: none; font-weight: bold; font-size: 32;">
-												&nbsp;&nbsp;${vo.title}<%-- (${vo.commentCount}) --%>
+												&nbsp;&nbsp;${vo.title}<%-- (${vo.commentCount}) --%><br/><br/>
 											</a>
 										</h4>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${vo.author}<br/><br/>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${vo.publisher}&nbsp;&nbsp;/&nbsp;&nbsp;${pDate}<br/><br/>
-										<fmt:formatNumber var="voavg" value="${vo.avg}" pattern="##.#"></fmt:formatNumber>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;평점: ${voavg}<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;평점: ${vo.avg}<br/>
 									</td>
 								</tr>
 							</table>
@@ -158,8 +197,7 @@
 								</c:if> 
 								<c:if test="${bookList.startPage <= 1}">
 									<button class="button button2" type="button" disabled="disabled"
-										title="이미 첫 10 페이지 입니다."
-										>이전</button>
+										title="이미 첫 10 페이지 입니다.">이전</button>
 								</c:if> 
 								
 								<!-- 페이지 이동 버튼 --> 

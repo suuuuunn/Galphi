@@ -70,8 +70,8 @@
 					    else
 					    {
 					        String nickname = (String) session.getAttribute("nickname");
-					        out.println(nickname+"님 로그인 되었습니다");
-					        out.print("<input type=\"button\" id=\"logout_btn\" class=\"btn btn-sm text-black-50 pt-4\" value=\"로그아웃\" onclick=\"location.href='logout.jsp'\">\n");
+					        out.print("<button type=\"button\" class=\"pt-4 btn btn-sm text-black-50\">"+nickname+"님 로그인 되었습니다" + "</button>");
+					        out.println("<input type=\"button\" id=\"logout_btn\" class=\"btn btn-sm text-black-50 pt-4\" value=\"로그아웃\" onclick=\"location.href='logout.jsp'\">\n");
 					    }
 					%>
 				</div>

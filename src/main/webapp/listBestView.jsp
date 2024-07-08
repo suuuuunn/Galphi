@@ -65,8 +65,8 @@
 					    else
 					    {
 					        String nickname = (String) session.getAttribute("nickname");
-					        out.println(nickname+"님 로그인 되었습니다");
-					        out.print("<input type=\"button\" id=\"logout_btn\" class=\"btn btn-sm text-black-50 pt-4\" value=\"로그아웃\" onclick=\"location.href='logout.jsp'\">\n");
+					        out.print("<button type=\"button\" class=\"pt-4 btn btn-sm text-black-50\">"+nickname+"님 로그인 되었습니다" + "</button>");
+					        out.println("<input type=\"button\" id=\"logout_btn\" class=\"btn btn-sm text-black-50 pt-4\" value=\"로그아웃\" onclick=\"location.href='logout.jsp'\">\n");
 					    }
 					%>
 				</div>
@@ -118,7 +118,7 @@
 						<c:forEach var="vo" items="${list}">
 							<%-- ${vo} --%>
 							<fmt:formatDate var="pDate" value="${vo.pDate}" pattern="yy.MM.dd" />
-							<table class="table-borderless ms-sm-5" style="margin-left: auto; margin-right: auto;">
+							<table class="table-borderless" style="margin-left: 6%;">
 								<tr>
 									<td rowspan="3" style="width: 100px; height: 150px;">
 										<img alt="title" src="./images/${vo.ISBN}.jpg" style="width: 200px; height: 267px;"></td>

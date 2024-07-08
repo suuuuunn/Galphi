@@ -47,7 +47,7 @@
 	
 	<!-- 신간도서 전체 개수를 얻어온다. -->
 	<select id="selectNewCount" resultType="int">
-		select count(*) from book where TO_DATE(pDate) > sysdate - 90
+		select count(*) from book where to_char(pdate) between to_char(sysdate - 180) and to_char(sysdate)
 	</select>
 		
 	<!-- 1페이지 분량의 신간 도서를 얻어온다. -->
@@ -55,7 +55,7 @@
 		<![CDATA[
 		select * from (
 			select rownum rnum, TT.* from (
-				select * from book where TO_DATE(pDate) > sysdate - 90 order by pdate desc
+				select * from book where to_char(pdate) between to_char(sysdate - 180) and to_char(sysdate) order by pdate desc
 			) TT where rownum <= #{endNo} 
 		) where rnum >= #{startNo}
 		]]>

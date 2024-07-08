@@ -4,7 +4,7 @@
 
     <insert id="insert" parameterType="ao">
         insert into usertable(usernum,username,nick,id,pw)
-        values (usertable_idx_seq.nextval,#{name},#{nickname},#{id},#{password})
+        values ((select nvl(max(usernum), 0) + 1 from usertable), #{name}, #{nickname}, #{id}, #{password})
     </insert>
 
     <select id="nickCheck" parameterType="String" resultType="int">

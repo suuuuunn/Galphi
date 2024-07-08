@@ -66,8 +66,8 @@
 					    else
 					    {
 					        String nickname = (String) session.getAttribute("nickname");
-					        out.println(nickname+"님 로그인 되었습니다");
-					        out.print("<input type=\"button\" id=\"logout_btn\" class=\"btn btn-sm text-black-50 pt-4\" value=\"로그아웃\" onclick=\"location.href='logout.jsp'\">\n");
+					        out.print("<button type=\"button\" class=\"pt-4 btn btn-sm text-black-50\">"+nickname+"님 로그인 되었습니다" + "</button>");
+					        out.println("<input type=\"button\" id=\"logout_btn\" class=\"btn btn-sm text-black-50 pt-4\" value=\"로그아웃\" onclick=\"location.href='logout.jsp'\">\n");
 					    }
 					%>
 				<!-- 로그인/회원가입 폼 끝-->
@@ -117,22 +117,21 @@
 						<c:forEach var="vo" items="${list}">
 							<%-- ${vo} --%>
 							<fmt:formatDate var="pDate" value="${vo.pDate}" pattern="yy.MM.dd" />
-							<table class="table-borderless ms-sm-5" style="margin: 10px;">
+							<table class="table-borderless" style="margin-left: 6%;">
 								<tr>
-									<td rowspan="3" style="width: 150px; height: 200px;">
-									<img alt="title" src="./images/${vo.ISBN}.jpg" style="width: 200px; height: 267px;"></td>
+									<td rowspan="3" style="width: 100px; height: 150px;">
+										<img alt="title" src="./images/${vo.ISBN}.jpg" style="width: 200px; height: 267px;"></td>
 									<td style="text-align: left;">
 										<h4>
 											<a
 												href="selectByISBN.jsp?ISBN=${vo.ISBN}&currentPage=${currentPage}"
 												style="color: black; text-decoration: none; font-weight: bold; font-size: 32;">
-												&nbsp;&nbsp;${vo.title}<%-- (${vo.commentCount}) --%>
+												&nbsp;&nbsp;${vo.title}<%-- (${vo.commentCount}) --%><br/><br/>
 											</a>
 										</h4>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${vo.author}<br/><br/>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${vo.publisher}&nbsp;&nbsp;/&nbsp;&nbsp;${pDate}<br/><br/>
-										<fmt:formatNumber var="voavg" value="${vo.avg}" pattern="##.#"></fmt:formatNumber>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;평점: ${voavg}<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;평점: ${vo.avg}<br/>
 									</td>
 								</tr>
 							</table>
